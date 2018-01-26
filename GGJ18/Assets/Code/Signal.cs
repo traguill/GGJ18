@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Signal : MonoBehaviour 
 {
-    enum MoveDirection
+    public enum MoveDirection
     {
         UP,
         RIGHT,
@@ -14,6 +14,8 @@ public class Signal : MonoBehaviour
 
     float timer = 0.0f;
     public float send_signal_every = 5.0f; //Sends signal every x seconds
+
+    public Player player;
 	
     //Save player input
     List<MoveDirection> orders_buffer = new List<MoveDirection>();
@@ -33,28 +35,9 @@ public class Signal : MonoBehaviour
 
     void SendSignal()
     {
-        //Send signal to something
-        Debug.Log("Signal sent");
-        for (int i = 0; i < orders_buffer.Count; i++)
-        {
-            MoveDirection tmp = orders_buffer[i];
-            switch (tmp)
-            {
-                case MoveDirection.UP:
-                    Debug.Log("UP+");
-                    break;
-                case MoveDirection.RIGHT:
-                    Debug.Log("RIGHT+");
-                    break;
-                case MoveDirection.DOWN:
-                    Debug.Log("DOWN+");
-                    break;
-                case MoveDirection.LEFT:
-                    Debug.Log("LEFT+");
-                    break;
-            }
-        }
-            orders_buffer.Clear();
+        Debug.Log("Now");
+        player.ReceiveOrders(orders_buffer);
+        orders_buffer.Clear();
     }
 
     private void GetPlayerInput()
