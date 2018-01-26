@@ -15,9 +15,16 @@ public class Grid : MonoBehaviour {
 
     public GameObject grid_element;
 
+    public static Grid current_grid;
+
     // Use this for initialization
     void Awake()
     {
+        if (current_grid != null)
+            Destroy(current_grid);
+
+        current_grid = this;
+
         w = n_w;
         h = n_h;
 
@@ -83,6 +90,16 @@ public class Grid : MonoBehaviour {
     public static Transform TransformInPos(Vector2 pos)
     {
         return grid[(int)pos.x - x, (int)pos.y - y];
+    }
+
+    public static Vector2 RealWorldToGridPos(Vector3 pos)
+    {
+        Vector2 n_pos = pos - current_grid.transform.position;
+        n_pos /= current_grid.real_units;
+
+        n_pos.x = Mathf.FloorToInt(n_pos.x);
+        n_pos.y = Mathf.FloorToInt(n_pos.y);
+        return n_pos;
     }
 
     //Helpers ------------------------------------------------------------------
