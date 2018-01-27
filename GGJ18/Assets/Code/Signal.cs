@@ -8,7 +8,7 @@ public class Signal : MonoBehaviour
     {
         UP,
         RIGHT,
-        DOWN,
+        WAIT,
         LEFT
     }
 
@@ -46,7 +46,7 @@ public class Signal : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space)) orders_buffer.Add(MoveDirection.UP);
         if (Input.GetKeyUp(KeyCode.J)) orders_buffer.Add(MoveDirection.RIGHT);
-        if (Input.GetKeyUp(KeyCode.DownArrow)) orders_buffer.Add(MoveDirection.DOWN);
+        if (Input.GetKeyUp(KeyCode.Y)) orders_buffer.Add(MoveDirection.WAIT);
         if (Input.GetKeyUp(KeyCode.F)) orders_buffer.Add(MoveDirection.LEFT);
 
         if (Input.GetKeyUp(KeyCode.Backspace) && orders_buffer.Count > 0) orders_buffer.RemoveAt(orders_buffer.Count - 1);

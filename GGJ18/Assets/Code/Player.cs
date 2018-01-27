@@ -63,8 +63,8 @@ public class Player : MonoBehaviour
                 looking_at = Quaternion.Euler(0.0f, 0.0f, -90.0f) * looking_at;
                 direction = Vector2.zero;
                 break;
-            case Signal.MoveDirection.DOWN:
-                direction *= -1;
+            case Signal.MoveDirection.WAIT:
+                direction = Vector2.zero;
                 break;
             case Signal.MoveDirection.LEFT:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, 90.0f) * looking_at;

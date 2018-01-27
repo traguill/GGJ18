@@ -51,7 +51,7 @@ public class ArrowMenu : MonoBehaviour
                     case Signal.MoveDirection.RIGHT:
                         arrows[i].sprite = RightArrow;
                         break;
-                    case Signal.MoveDirection.DOWN:
+                    case Signal.MoveDirection.WAIT:
                         arrows[i].sprite = DownArrow;
                         break;
                     case Signal.MoveDirection.LEFT:
