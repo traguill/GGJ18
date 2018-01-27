@@ -13,6 +13,6 @@ public class RenderOrder : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        s_ren.sortingOrder = -(int)Grid.RealWorldToGridPos(transform.position).y;
+        s_ren.sortingOrder = -Mathf.RoundToInt(transform.position.y);
 	}
 }

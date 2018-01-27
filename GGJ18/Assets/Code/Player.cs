@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        s_ren.sortingOrder = -(int)grid_pos.y;
+        s_ren.sortingOrder = -Mathf.RoundToInt(transform.position.y);
         CheckWinAndRuby();
     }
 

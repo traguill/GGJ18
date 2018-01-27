@@ -158,7 +158,7 @@ public class BaseEnemy : MonoBehaviour
             current_move_time += 0.02f;
             anim.SetFloat("speedy", Mathf.RoundToInt(pos.y - transform.position.y));
             anim.SetFloat("speedx", Mathf.Abs(pos.x - transform.position.x));
-            s_ren.sortingOrder = -(int)grid_pos.y;
+            s_ren.sortingOrder = -Mathf.RoundToInt(transform.position.y);
             yield return new WaitForSeconds(Time.deltaTime);
         }
         anim.SetFloat("speedy", 0);
