@@ -21,12 +21,20 @@ public class BaseEnemy : MonoBehaviour
     public Vector2 looking_at = Vector2.up;
     bool coming_back = false;
 
+
+    SpriteRenderer s_ren;
+    Animator anim;
 	void Start ()
     {
         grid_pos = Grid.RealWorldToGridPos(transform.position);
         SetPosInGrid(grid_pos);
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, new Vector3(looking_at.x, looking_at.y, 0.0f));
+
         Invoke("DoAction", LevelManager.current_level.action_time);
+        s_ren = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+
+        if (looking_at.x > 0)
+            s_ren.flipX = true;
     }
 	
     void DoAction()
@@ -75,6 +83,7 @@ public class BaseEnemy : MonoBehaviour
     void ExecuteAction(ENEMY_ACTIONS action)
     {
         //Debug.Log("EXECUTING ACTION:" + action.ToString());
+        s_ren.flipX = false;
         switch (action)
         {
             case ENEMY_ACTIONS.MOVE:
@@ -93,8 +102,11 @@ public class BaseEnemy : MonoBehaviour
 
                 break;
         }
-
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, new Vector3(looking_at.x, looking_at.y, 0.0f));
+        if (looking_at.x > 0)
+            s_ren.flipX = true;
+        else
+            s_ren.flipX = false;
+        //transform.rotation = Quaternion.LookRotation(Vector3.forward, new Vector3(looking_at.x, looking_at.y, 0.0f));
     }
 
 
@@ -107,7 +119,6 @@ public class BaseEnemy : MonoBehaviour
             grid_pos += (Vector2)dir;
             SetGridPos();
         }
-
     }
 
     IEnumerator MoveSmooth(Vector3 pos)
@@ -118,6 +129,9 @@ public class BaseEnemy : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, pos, mov_velocity * 0.02f);
             current_move_time += 0.02f;
+            anim.SetFloat("speedy", pos.y - transform.position.y);
+            anim.SetFloat("speedx", Mathf.Abs(pos.x - transform.position.x));
+            s_ren.sortingOrder = (int)grid_pos.y;
             yield return new WaitForSeconds(0.02f);
         }
         Detect();
@@ -136,12 +150,12 @@ public class BaseEnemy : MonoBehaviour
             }
             else if(i == 1)
             {
-                hit = Physics2D.Raycast(transform.position + new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units + transform.up * Grid.current_grid.real_units, looking_at, 26 * Grid.current_grid.real_units);
+                hit = Physics2D.Raycast(transform.position + new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units + new Vector3(looking_at.x, looking_at.y) * Grid.current_grid.real_units, looking_at, 26 * Grid.current_grid.real_units);
 
             }
             else
             {
-                hit = Physics2D.Raycast(transform.position - new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units + transform.up * Grid.current_grid.real_units, looking_at, 26 * Grid.current_grid.real_units);
+                hit = Physics2D.Raycast(transform.position - new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units + new Vector3(looking_at.x, looking_at.y) * Grid.current_grid.real_units, looking_at, 26 * Grid.current_grid.real_units);
             }
                 
             if (hit.collider != null)
@@ -151,10 +165,7 @@ public class BaseEnemy : MonoBehaviour
                     LevelManager.current_level.LossGame();
                 }
             }
-
-
         }
-
     }
 
     public void SetGridPos()
@@ -202,11 +213,11 @@ public class BaseEnemy : MonoBehaviour
             }
             else if (i == 1)
             {
-                Debug.DrawRay((transform.position + new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units)+transform.up*Grid.current_grid.real_units, looking_at * 1000, Color.yellow);
+                Debug.DrawRay((transform.position + new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units)+ new Vector3(looking_at.x, looking_at.y) * Grid.current_grid.real_units, looking_at * 1000, Color.yellow);
             }
             else
             {
-                Debug.DrawRay(transform.position - (new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units) + transform.up * Grid.current_grid.real_units, looking_at * 1000, Color.yellow);
+                Debug.DrawRay(transform.position - (new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units) + new Vector3(looking_at.x, looking_at.y) * Grid.current_grid.real_units, looking_at * 1000, Color.yellow);
             }
         }
     }
