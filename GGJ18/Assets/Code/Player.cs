@@ -14,10 +14,13 @@ public class Player : MonoBehaviour
     public float mov_speed = 1.0f;
     Vector2 grid_pos;
     bool moving = false;
+    Animator anim;
+
     private void Start()
     {
         tempo = LevelManager.current_level.action_time;
         grid_pos = Grid.RealWorldToGridPos(transform.position);
+        anim = GetComponent<Animator>();
     }
 
     void Update () 
@@ -26,13 +29,16 @@ public class Player : MonoBehaviour
         if(timer >= tempo && moving == false)
         {
             timer -= tempo;
-            
+
             if (orders.Count != 0)
             {
                 SetDirection(orders[0]);
             }
             else
+            {
                 direction = Vector2.zero;
+                anim.SetBool("walk", false);
+            }
         }
 	}
 
@@ -62,6 +68,7 @@ public class Player : MonoBehaviour
             case Signal.MoveDirection.RIGHT:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, -90.0f) * looking_at;
                 direction = Vector2.zero;
+                anim.SetBool("turn_right", true);
                 break;
             case Signal.MoveDirection.DOWN:
                 direction *= -1;
@@ -69,6 +76,7 @@ public class Player : MonoBehaviour
             case Signal.MoveDirection.LEFT:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, 90.0f) * looking_at;
                 direction = Vector2.zero;
+                anim.SetBool("turn_left", true);
                 break;
         }
         orders.RemoveAt(0);
@@ -77,8 +85,13 @@ public class Player : MonoBehaviour
         if (direction != Vector2.zero && isValidGridPos(grid_pos + new Vector2(direction.x, direction.y)))
         {
             moving = true;
+            anim.SetBool("walk", true);
             StartCoroutine(MoveSmooth(transform.position + new Vector3(direction.x, direction.y) * Grid.current_grid.real_units));
             grid_pos += Grid.roundVec2(new Vector2(direction.x, direction.y));
+        }
+        else
+        {
+            anim.SetBool("walk", false);
         }
     }
 
