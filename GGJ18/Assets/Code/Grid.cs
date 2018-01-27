@@ -18,6 +18,10 @@ public class Grid : MonoBehaviour, ISerializationCallbackReceiver
 
     public GameObject grid_element;
 
+
+    public GameObject end_position;
+    public GameObject ruby;
+
     public static Grid current_grid;
 
     public int[,] grid_int = new int[w, h];
@@ -56,7 +60,17 @@ public class Grid : MonoBehaviour, ISerializationCallbackReceiver
                     Instantiate(no_walkable, transform.position + new Vector3(i * real_units, (n_h - 1) * real_units - j * real_units), Quaternion.identity);
                 }
 
-                GameObject go = Instantiate(grid_element, transform.position + new Vector3(i * real_units, (n_h - 1) * real_units - j * real_units), Quaternion.identity);
+                if (grid_int[i, j] == 2)
+                {
+                    Instantiate(ruby, transform.position + new Vector3(i * real_units, (n_h - 1) * real_units - j * real_units), Quaternion.identity);
+                }
+
+                if (grid_int[i, j] == 3)
+                {
+                    Instantiate(end_position, transform.position + new Vector3(i * real_units, (n_h - 1) * real_units - j * real_units), Quaternion.identity);
+                }
+
+                //GameObject go = Instantiate(grid_element, transform.position + new Vector3(i * real_units, (n_h - 1) * real_units - j * real_units), Quaternion.identity);
             }
         }
    }

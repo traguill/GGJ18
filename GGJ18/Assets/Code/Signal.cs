@@ -49,7 +49,7 @@ public class Signal : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Y) ||Input.GetButtonDown("Fire2")) orders_buffer.Add(MoveDirection.WAIT);
         if (Input.GetKeyUp(KeyCode.F) || Input.GetButtonDown("Fire4")) orders_buffer.Add(MoveDirection.LEFT);
 
-        if (Input.GetKeyUp(KeyCode.Backspace) && orders_buffer.Count > 0) orders_buffer.RemoveAt(orders_buffer.Count - 1);
+        if ((Input.GetKeyUp(KeyCode.Backspace) || Input.GetButtonDown("Fire2")) && orders_buffer.Count > 0) orders_buffer.RemoveAt(orders_buffer.Count - 1);
         if (Input.GetKeyUp(KeyCode.Delete) && orders_buffer.Count != 0) orders_buffer.Clear();
 
 

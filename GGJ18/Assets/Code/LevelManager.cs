@@ -26,4 +26,9 @@ public class LevelManager : MonoBehaviour {
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void WinGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

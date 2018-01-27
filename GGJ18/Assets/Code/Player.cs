@@ -15,12 +15,42 @@ public class Player : MonoBehaviour
     Vector2 grid_pos;
     bool moving = false;
     Animator anim;
+    SpriteRenderer s_ren;
+
+    GameObject ruby;
+    GameObject endposition;
+
+    bool got_ruby = false;
 
     private void Start()
     {
         tempo = LevelManager.current_level.action_time;
         grid_pos = Grid.RealWorldToGridPos(transform.position);
         anim = GetComponent<Animator>();
+        s_ren = GetComponent<SpriteRenderer>();
+
+        ruby = GameObject.FindGameObjectWithTag("Item");
+        endposition = GameObject.FindGameObjectWithTag("Finish");
+    }
+
+    void CheckWinAndRuby()
+    {
+        if(!got_ruby)
+        {
+            if(Vector3.Distance(ruby.transform.position,transform.position)< Grid.current_grid.real_units/2)
+            {
+                got_ruby = true;
+                ruby.SetActive(false);
+            }
+                
+        }
+        else
+        {
+            if (Vector3.Distance(endposition.transform.position, transform.position) < 1f)
+            {
+                LevelManager.current_level.WinGame();
+            }
+        }
     }
 
     void Update () 
@@ -29,10 +59,11 @@ public class Player : MonoBehaviour
         if(timer >= tempo && moving == false)
         {
             timer -= tempo;
-
+            
             if (orders.Count != 0)
             {
                 SetDirection(orders[0]);
+                
             }
             else
             {
@@ -40,7 +71,10 @@ public class Player : MonoBehaviour
                 anim.SetBool("walk", false);
             }
         }
-	}
+
+        s_ren.sortingOrder = -(int)grid_pos.y;
+        CheckWinAndRuby();
+    }
 
     public void ReceiveOrders(List<Signal.MoveDirection> data)
     {
