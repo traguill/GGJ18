@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid : MonoBehaviour {
+public class Grid : MonoBehaviour, ISerializationCallbackReceiver 
+{
 
     public int n_w = 12;
     public int n_h = 12;
@@ -13,9 +14,21 @@ public class Grid : MonoBehaviour {
     public static int y = 0;
     public static Transform[,] grid = new Transform[w, h];
 
+    public GameObject no_walkable;
+
     public GameObject grid_element;
 
     public static Grid current_grid;
+
+    public int[,] grid_int = new int[w, h];
+
+    [HideInInspector]
+    [SerializeField]
+    private int[] m_Flattendreal_sol;
+
+    [HideInInspector]
+    [SerializeField]
+    private int m_Flattendreal_solRows;
 
     // Use this for initialization
     void Awake()
@@ -38,6 +51,11 @@ public class Grid : MonoBehaviour {
         {
             for (int j = 0; j < h; j++)
             {
+                if(grid_int[i,j] == 1)
+                {
+                    Instantiate(no_walkable, transform.position + new Vector3(i * real_units, (n_h - 1) * real_units - j * real_units), Quaternion.identity);
+                }
+
                 GameObject go = Instantiate(grid_element, transform.position + new Vector3(i * real_units, (n_h - 1) * real_units - j * real_units), Quaternion.identity);
             }
         }
@@ -100,6 +118,31 @@ public class Grid : MonoBehaviour {
         n_pos.x = Mathf.FloorToInt(n_pos.x);
         n_pos.y = Mathf.FloorToInt(n_pos.y);
         return n_pos;
+    }
+
+    public void OnBeforeSerialize()
+    {
+        int c1 = grid_int.GetLength(0);
+        int c2 = grid_int.GetLength(1);
+        int count = c1 * c2;
+        m_Flattendreal_sol = new int[count];
+        m_Flattendreal_solRows = c1;
+        for (int i = 0; i < count; i++)
+        {
+            m_Flattendreal_sol[i] = grid_int[i % c1, i / c1];
+        }
+    }
+
+    public void OnAfterDeserialize()
+    {
+        int count = m_Flattendreal_sol.Length;
+        int c1 = m_Flattendreal_solRows;
+        int c2 = count / c1;
+        grid_int = new int[c1, c2];
+        for (int i = 0; i < count; i++)
+        {
+            grid_int[i % c1, i / c1] = m_Flattendreal_sol[i];
+        }
     }
 
     //Helpers ------------------------------------------------------------------
