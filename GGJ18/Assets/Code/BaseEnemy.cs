@@ -38,7 +38,7 @@ public class BaseEnemy : MonoBehaviour
             action_to_execute = my_actions[current_action];
 
             if (current_action == my_actions.Length - 1)
-                current_action = 0;
+                current_action = -1;
         }
         else
         {
@@ -122,6 +122,25 @@ public class BaseEnemy : MonoBehaviour
         }
 
         transform.position = pos;
+    }
+
+    void Detect()
+    {
+
+        for(int i = 0; i< 3; i++)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, looking_at, 26 * Grid.current_grid.real_units);
+            if (hit.collider != null)
+            {
+                if(hit.collider.CompareTag("Player"))
+                {
+                    LevelManager.current_level.LossGame();
+                }
+            }
+
+
+        }
+
     }
 
     public void SetGridPos()

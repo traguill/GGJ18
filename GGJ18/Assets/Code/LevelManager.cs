@@ -21,4 +21,9 @@ public class LevelManager : MonoBehaviour {
     {
 		
 	}
+
+    public void LossGame()
+    {
+
+    }
 }
