@@ -118,6 +118,8 @@ public class BaseEnemy : MonoBehaviour
         {
             anim.SetBool("godown", false);
         }
+
+        Detect();
         //transform.rotation = Quaternion.LookRotation(Vector3.forward, new Vector3(looking_at.x, looking_at.y, 0.0f));
     }
 
@@ -147,7 +149,7 @@ public class BaseEnemy : MonoBehaviour
             s_ren.sortingOrder = (int)grid_pos.y;
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        Detect();
+        
         transform.position = pos;
     }
 
@@ -159,16 +161,16 @@ public class BaseEnemy : MonoBehaviour
             RaycastHit2D hit;
             if (i== 0)
             {
-                hit = Physics2D.Raycast(transform.position, looking_at, 26 * Grid.current_grid.real_units);
+                hit = Physics2D.Raycast(transform.position, looking_at, 1000);
             }
             else if(i == 1)
             {
-                hit = Physics2D.Raycast(transform.position + new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units + new Vector3(looking_at.x, looking_at.y) * Grid.current_grid.real_units, looking_at, 26 * Grid.current_grid.real_units);
+                hit = Physics2D.Raycast(transform.position + new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units + new Vector3(looking_at.x, looking_at.y) * Grid.current_grid.real_units, looking_at, 1000);
 
             }
             else
             {
-                hit = Physics2D.Raycast(transform.position - new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units + new Vector3(looking_at.x, looking_at.y) * Grid.current_grid.real_units, looking_at, 26 * Grid.current_grid.real_units);
+                hit = Physics2D.Raycast(transform.position - new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units + new Vector3(looking_at.x, looking_at.y) * Grid.current_grid.real_units, looking_at, 1000);
             }
                 
             if (hit.collider != null)
