@@ -59,4 +59,13 @@ public class Signal : MonoBehaviour
         return orders_buffer;
     }
 
+    public float GetTimeUntilSignal()
+    {
+        return send_signal_every - timer;
+    }
+
+    public float GetLapsedTime()
+    {
+        return send_signal_every - timer;
+    }
 }
