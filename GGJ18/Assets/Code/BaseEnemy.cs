@@ -92,16 +92,34 @@ public class BaseEnemy : MonoBehaviour
                 break;
             case ENEMY_ACTIONS.ROTATE_RIGHT:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, -90.0f) * looking_at;
-                if (Mathf.Abs(looking_at.x) > 0.1f)
+                if (Mathf.RoundToInt(Mathf.Abs(looking_at.x)) > 0.1f)
                     anim.SetTrigger("normalidle");
+
+                if (Mathf.RoundToInt(looking_at.y) > 0.2f)
+                    anim.SetTrigger("goup");
+
+                if (Mathf.RoundToInt(looking_at.y) < -0.2f)
+                    anim.SetTrigger("godown");
                 break;
             case ENEMY_ACTIONS.ROTATE_LEFT:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, 90.0f) * looking_at;
-                if (Mathf.Abs(looking_at.x) > 0.1f)
+                if (Mathf.RoundToInt(Mathf.Abs(looking_at.x)) > 0.1f)
                     anim.SetTrigger("normalidle");
+
+                if (Mathf.RoundToInt(looking_at.y) > 0.2f)
+                    anim.SetTrigger("goup");
+
+                if (Mathf.RoundToInt(looking_at.y) < -0.2f)
+                    anim.SetTrigger("godown");
+
                 break;
             case ENEMY_ACTIONS.LOOK_BACKWARDS:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, 180.0f) * looking_at;
+                if (Mathf.RoundToInt(looking_at.y) > 0.2f)
+                    anim.SetTrigger("goup");
+
+                if (Mathf.RoundToInt(looking_at.y) < -0.2f)
+                    anim.SetTrigger("godown");
                 break;
             case ENEMY_ACTIONS.PAUSE:
 
@@ -112,18 +130,6 @@ public class BaseEnemy : MonoBehaviour
             s_ren.flipX = true;
         else
             s_ren.flipX = false;
-
-        
-        if (looking_at.y > 0.2f)
-            anim.SetBool("goup", true);
-        else
-            anim.SetBool("goup", false);
-        if (looking_at.y < -0.2f)
-            anim.SetBool("godown", true);
-        else
-        {
-            anim.SetBool("godown", false);
-        }
 
         Detect();
         //transform.rotation = Quaternion.LookRotation(Vector3.forward, new Vector3(looking_at.x, looking_at.y, 0.0f));
