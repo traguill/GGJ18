@@ -84,6 +84,7 @@ public class BaseEnemy : MonoBehaviour
     {
         //Debug.Log("EXECUTING ACTION:" + action.ToString());
         s_ren.flipX = false;
+        Vector2 old_looking = looking_at;
         switch (action)
         {
             case ENEMY_ACTIONS.MOVE:
@@ -91,9 +92,13 @@ public class BaseEnemy : MonoBehaviour
                 break;
             case ENEMY_ACTIONS.ROTATE_RIGHT:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, -90.0f) * looking_at;
+                if (Mathf.Abs(looking_at.x) > 0.1f)
+                    anim.SetTrigger("normalidle");
                 break;
             case ENEMY_ACTIONS.ROTATE_LEFT:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, 90.0f) * looking_at;
+                if (Mathf.Abs(looking_at.x) > 0.1f)
+                    anim.SetTrigger("normalidle");
                 break;
             case ENEMY_ACTIONS.LOOK_BACKWARDS:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, 180.0f) * looking_at;
@@ -102,10 +107,25 @@ public class BaseEnemy : MonoBehaviour
 
                 break;
         }
+        
         if (looking_at.x > 0)
             s_ren.flipX = true;
         else
             s_ren.flipX = false;
+
+        
+        if (looking_at.y > 0.2f)
+            anim.SetBool("goup", true);
+        else
+            anim.SetBool("goup", false);
+        if (looking_at.y < -0.2f)
+            anim.SetBool("godown", true);
+        else
+        {
+            anim.SetBool("godown", false);
+        }
+
+        Detect();
         //transform.rotation = Quaternion.LookRotation(Vector3.forward, new Vector3(looking_at.x, looking_at.y, 0.0f));
     }
 
@@ -124,17 +144,18 @@ public class BaseEnemy : MonoBehaviour
     IEnumerator MoveSmooth(Vector3 pos)
     {
         float current_move_time = 0f;
-        
-        while(max_movement_time > current_move_time)
+        anim.SetFloat("speedy", pos.y - transform.position.y);
+        anim.SetFloat("speedx", Mathf.Abs(pos.x - transform.position.x));
+        while (max_movement_time > current_move_time)
         {
-            transform.position = Vector3.Lerp(transform.position, pos, mov_velocity * 0.02f);
+            transform.position = Vector3.Lerp(transform.position, pos, mov_velocity * Time.deltaTime);
             current_move_time += 0.02f;
-            anim.SetFloat("speedy", pos.y - transform.position.y);
+            anim.SetFloat("speedy", Mathf.RoundToInt(pos.y - transform.position.y));
             anim.SetFloat("speedx", Mathf.Abs(pos.x - transform.position.x));
             s_ren.sortingOrder = (int)grid_pos.y;
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(Time.deltaTime);
         }
-        Detect();
+        
         transform.position = pos;
     }
 
@@ -146,16 +167,16 @@ public class BaseEnemy : MonoBehaviour
             RaycastHit2D hit;
             if (i== 0)
             {
-                hit = Physics2D.Raycast(transform.position, looking_at, 26 * Grid.current_grid.real_units);
+                hit = Physics2D.Raycast(transform.position, looking_at, 1000);
             }
             else if(i == 1)
             {
-                hit = Physics2D.Raycast(transform.position + new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units + new Vector3(looking_at.x, looking_at.y) * Grid.current_grid.real_units, looking_at, 26 * Grid.current_grid.real_units);
+                hit = Physics2D.Raycast(transform.position + new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units + new Vector3(looking_at.x, looking_at.y) * Grid.current_grid.real_units, looking_at, 1000);
 
             }
             else
             {
-                hit = Physics2D.Raycast(transform.position - new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units + new Vector3(looking_at.x, looking_at.y) * Grid.current_grid.real_units, looking_at, 26 * Grid.current_grid.real_units);
+                hit = Physics2D.Raycast(transform.position - new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units + new Vector3(looking_at.x, looking_at.y) * Grid.current_grid.real_units, looking_at, 1000);
             }
                 
             if (hit.collider != null)
@@ -200,7 +221,6 @@ public class BaseEnemy : MonoBehaviour
     {
         grid_pos = pos;
         SetGridPos();
-        Debug.Log(grid_pos);
     }
 
     private void OnDrawGizmosSelected()
