@@ -97,6 +97,7 @@ public class BaseEnemy : MonoBehaviour
                 break;
             case ENEMY_ACTIONS.LOOK_BACKWARDS:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, 180.0f) * looking_at;
+
                 break;
             case ENEMY_ACTIONS.PAUSE:
 
@@ -106,6 +107,17 @@ public class BaseEnemy : MonoBehaviour
             s_ren.flipX = true;
         else
             s_ren.flipX = false;
+
+        if (looking_at.y > 0.2f)
+            anim.SetBool("goup", true);
+        else
+            anim.SetBool("goup", false);
+        if (looking_at.y < -0.2f)
+            anim.SetBool("godown", true);
+        else
+        {
+            anim.SetBool("godown", false);
+        }
         //transform.rotation = Quaternion.LookRotation(Vector3.forward, new Vector3(looking_at.x, looking_at.y, 0.0f));
     }
 
@@ -124,15 +136,16 @@ public class BaseEnemy : MonoBehaviour
     IEnumerator MoveSmooth(Vector3 pos)
     {
         float current_move_time = 0f;
-        
-        while(max_movement_time > current_move_time)
+        anim.SetFloat("speedy", pos.y - transform.position.y);
+        anim.SetFloat("speedx", Mathf.Abs(pos.x - transform.position.x));
+        while (max_movement_time > current_move_time)
         {
-            transform.position = Vector3.Lerp(transform.position, pos, mov_velocity * 0.02f);
+            transform.position = Vector3.Lerp(transform.position, pos, mov_velocity * Time.deltaTime);
             current_move_time += 0.02f;
             anim.SetFloat("speedy", pos.y - transform.position.y);
             anim.SetFloat("speedx", Mathf.Abs(pos.x - transform.position.x));
             s_ren.sortingOrder = (int)grid_pos.y;
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(Time.deltaTime);
         }
         Detect();
         transform.position = pos;
