@@ -4,10 +4,10 @@ using UnityEngine;
 
 public enum ENEMY_ACTIONS
 {
-    MOVE_UP,
-    MOVE_DOWN,
-    MOVE_LEFT,
-    MOVE_RIGHT,
+    MOVE,
+    ROTATE_RIGHT,
+    ROTATE_LEFT,
+    LOOK_BACKWARDS,
     PAUSE
 }
 
@@ -18,7 +18,7 @@ public class BaseEnemy : MonoBehaviour
     public float max_movement_time = 0.5f;
     Vector2 grid_pos;
     int current_action = -1;
-
+    Vector2 looking_at = Vector2.up;
     bool coming_back = false;
 
 	void Start ()
@@ -37,24 +37,24 @@ public class BaseEnemy : MonoBehaviour
             current_action++;
             action_to_execute = my_actions[current_action];
 
-            if (current_action == my_actions.Length-1)
-                coming_back = true;
+            if (current_action == my_actions.Length - 1)
+                current_action = 0;
         }
         else
         {
             switch (my_actions[current_action])
             {
-                case ENEMY_ACTIONS.MOVE_DOWN:
-                    action_to_execute = ENEMY_ACTIONS.MOVE_UP;
+                case ENEMY_ACTIONS.LOOK_BACKWARDS:
+                    action_to_execute = ENEMY_ACTIONS.LOOK_BACKWARDS;
                     break;
-                case ENEMY_ACTIONS.MOVE_LEFT:
-                    action_to_execute = ENEMY_ACTIONS.MOVE_RIGHT;
+                case ENEMY_ACTIONS.ROTATE_LEFT:
+                    action_to_execute = ENEMY_ACTIONS.ROTATE_RIGHT;
                     break;
-                case ENEMY_ACTIONS.MOVE_RIGHT:
-                    action_to_execute = ENEMY_ACTIONS.MOVE_LEFT;
+                case ENEMY_ACTIONS.ROTATE_RIGHT:
+                    action_to_execute = ENEMY_ACTIONS.ROTATE_LEFT;
                     break;
-                case ENEMY_ACTIONS.MOVE_UP:
-                    action_to_execute = ENEMY_ACTIONS.MOVE_DOWN;
+                case ENEMY_ACTIONS.MOVE:
+                    action_to_execute = ENEMY_ACTIONS.MOVE;
                     break;
                 case ENEMY_ACTIONS.PAUSE:
                     action_to_execute = ENEMY_ACTIONS.PAUSE;
@@ -77,22 +77,24 @@ public class BaseEnemy : MonoBehaviour
         //Debug.Log("EXECUTING ACTION:" + action.ToString());
         switch (action)
         {
-            case ENEMY_ACTIONS.MOVE_DOWN:
-                Move(Vector3.down);
+            case ENEMY_ACTIONS.MOVE:
+                Move(looking_at);
                 break;
-            case ENEMY_ACTIONS.MOVE_LEFT:
-                Move(Vector3.left);
+            case ENEMY_ACTIONS.ROTATE_RIGHT:
+                looking_at = Quaternion.Euler(0.0f, 0.0f, -90.0f) * looking_at;
                 break;
-            case ENEMY_ACTIONS.MOVE_RIGHT:
-                Move(Vector3.right);
+            case ENEMY_ACTIONS.ROTATE_LEFT:
+                looking_at = Quaternion.Euler(0.0f, 0.0f, 90.0f) * looking_at;
                 break;
-            case ENEMY_ACTIONS.MOVE_UP:
-                Move(Vector3.up);
+            case ENEMY_ACTIONS.LOOK_BACKWARDS:
+                looking_at = Quaternion.Euler(0.0f, 0.0f, 180.0f) * looking_at;
                 break;
             case ENEMY_ACTIONS.PAUSE:
 
                 break;
         }
+
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, new Vector3(looking_at.x, looking_at.y, 0.0f));
     }
 
 
