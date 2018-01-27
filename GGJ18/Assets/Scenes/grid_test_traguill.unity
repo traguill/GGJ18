@@ -319,6 +319,7 @@ GameObject:
   - component: {fileID: 509228461}
   - component: {fileID: 509228460}
   - component: {fileID: 509228462}
+  - component: {fileID: 509228463}
   m_Layer: 0
   m_Name: Player_tmp
   m_TagString: Player
@@ -395,6 +396,31 @@ MonoBehaviour:
   tempo: 2
   max_movement_time: 0.5
   mov_speed: 12
+--- !u!61 &509228463
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 509228459}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 32, y: 32}
+    newSize: {x: 21, y: 26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 16, y: 16}
+  m_EdgeRadius: 0
 --- !u!1001 &569983023
 Prefab:
   m_ObjectHideFlags: 0

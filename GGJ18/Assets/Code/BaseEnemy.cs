@@ -120,7 +120,7 @@ public class BaseEnemy : MonoBehaviour
             current_move_time += 0.02f;
             yield return new WaitForSeconds(0.02f);
         }
-
+        Detect();
         transform.position = pos;
     }
 
@@ -129,7 +129,21 @@ public class BaseEnemy : MonoBehaviour
 
         for(int i = 0; i< 3; i++)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, looking_at, 26 * Grid.current_grid.real_units);
+            RaycastHit2D hit;
+            if (i== 0)
+            {
+                hit = Physics2D.Raycast(transform.position, looking_at, 26 * Grid.current_grid.real_units);
+            }
+            else if(i == 1)
+            {
+                hit = Physics2D.Raycast(transform.position + new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units + transform.up * Grid.current_grid.real_units, looking_at, 26 * Grid.current_grid.real_units);
+
+            }
+            else
+            {
+                hit = Physics2D.Raycast(transform.position - new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units + transform.up * Grid.current_grid.real_units, looking_at, 26 * Grid.current_grid.real_units);
+            }
+                
             if (hit.collider != null)
             {
                 if(hit.collider.CompareTag("Player"))
@@ -176,5 +190,24 @@ public class BaseEnemy : MonoBehaviour
         grid_pos = pos;
         SetGridPos();
         Debug.Log(grid_pos);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (i == 0)
+            {
+                Debug.DrawRay(transform.position, looking_at * 1000, Color.yellow);
+            }
+            else if (i == 1)
+            {
+                Debug.DrawRay((transform.position + new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units)+transform.up*Grid.current_grid.real_units, looking_at * 1000, Color.yellow);
+            }
+            else
+            {
+                Debug.DrawRay(transform.position - (new Vector3(-looking_at.y, looking_at.x) * Grid.current_grid.real_units) + transform.up * Grid.current_grid.real_units, looking_at * 1000, Color.yellow);
+            }
+        }
     }
 }
