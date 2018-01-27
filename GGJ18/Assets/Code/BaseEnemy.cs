@@ -18,14 +18,14 @@ public class BaseEnemy : MonoBehaviour
     public float max_movement_time = 0.5f;
     Vector2 grid_pos;
     int current_action = -1;
-    Vector2 looking_at = Vector2.up;
+    public Vector2 looking_at = Vector2.up;
     bool coming_back = false;
 
 	void Start ()
     {
         grid_pos = Grid.RealWorldToGridPos(transform.position);
         SetPosInGrid(grid_pos);
-
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, new Vector3(looking_at.x, looking_at.y, 0.0f));
         Invoke("DoAction", LevelManager.current_level.action_time);
     }
 	
