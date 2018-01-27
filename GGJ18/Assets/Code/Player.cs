@@ -53,29 +53,28 @@ public class Player : MonoBehaviour
 
     void SetDirection(Signal.MoveDirection dir)
     {
-        float rotation = 0.0f;
+        direction = looking_at;
         switch (dir)
         {
             case Signal.MoveDirection.UP:
-                rotation = 0.0f;
+                //Nothing go straight
                 break;
             case Signal.MoveDirection.RIGHT:
-                rotation = -90.0f;
+                looking_at = Quaternion.Euler(0.0f, 0.0f, -90.0f) * looking_at;
+                direction = Vector2.zero;
                 break;
             case Signal.MoveDirection.DOWN:
-                rotation = 180.0f;
+                direction *= -1;
                 break;
             case Signal.MoveDirection.LEFT:
-                rotation = 90.0f;
+                looking_at = Quaternion.Euler(0.0f, 0.0f, 90.0f) * looking_at;
+                direction = Vector2.zero;
                 break;
         }
-        direction = Quaternion.Euler(0.0f, 0.0f, rotation) * looking_at;
-
-        transform.rotation *= Quaternion.Euler(0.0f, 0.0f, rotation);
-        looking_at = direction;
         orders.RemoveAt(0);
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, new Vector3(looking_at.x, looking_at.y, 0.0f));
         
-        if (isValidGridPos(grid_pos + new Vector2(direction.x, direction.y)))
+        if (direction != Vector2.zero && isValidGridPos(grid_pos + new Vector2(direction.x, direction.y)))
         {
             moving = true;
             StartCoroutine(MoveSmooth(transform.position + new Vector3(direction.x, direction.y) * Grid.current_grid.real_units));

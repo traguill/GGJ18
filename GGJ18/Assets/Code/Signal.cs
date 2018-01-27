@@ -38,7 +38,6 @@ public class Signal : MonoBehaviour
 
     void SendSignal()
     {
-        Debug.Log("Now");
         player.ReceiveOrders(orders_buffer);
         orders_buffer.Clear();
     }
