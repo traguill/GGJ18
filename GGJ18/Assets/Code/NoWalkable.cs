@@ -40,6 +40,5 @@ public class NoWalkable : MonoBehaviour {
     {
         grid_pos = pos;
         SetGridPos();
-        Debug.Log(grid_pos);
     }
 }

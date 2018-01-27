@@ -84,6 +84,7 @@ public class BaseEnemy : MonoBehaviour
     {
         //Debug.Log("EXECUTING ACTION:" + action.ToString());
         s_ren.flipX = false;
+        Vector2 old_looking = looking_at;
         switch (action)
         {
             case ENEMY_ACTIONS.MOVE:
@@ -91,23 +92,28 @@ public class BaseEnemy : MonoBehaviour
                 break;
             case ENEMY_ACTIONS.ROTATE_RIGHT:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, -90.0f) * looking_at;
+                if (Mathf.Abs(looking_at.x) > 0.1f)
+                    anim.SetTrigger("normalidle");
                 break;
             case ENEMY_ACTIONS.ROTATE_LEFT:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, 90.0f) * looking_at;
+                if (Mathf.Abs(looking_at.x) > 0.1f)
+                    anim.SetTrigger("normalidle");
                 break;
             case ENEMY_ACTIONS.LOOK_BACKWARDS:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, 180.0f) * looking_at;
-
                 break;
             case ENEMY_ACTIONS.PAUSE:
 
                 break;
         }
+        
         if (looking_at.x > 0)
             s_ren.flipX = true;
         else
             s_ren.flipX = false;
 
+        
         if (looking_at.y > 0.2f)
             anim.SetBool("goup", true);
         else
@@ -144,7 +150,7 @@ public class BaseEnemy : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, pos, mov_velocity * Time.deltaTime);
             current_move_time += 0.02f;
-            anim.SetFloat("speedy", pos.y - transform.position.y);
+            anim.SetFloat("speedy", Mathf.RoundToInt(pos.y - transform.position.y));
             anim.SetFloat("speedx", Mathf.Abs(pos.x - transform.position.x));
             s_ren.sortingOrder = (int)grid_pos.y;
             yield return new WaitForSeconds(Time.deltaTime);
@@ -215,7 +221,6 @@ public class BaseEnemy : MonoBehaviour
     {
         grid_pos = pos;
         SetGridPos();
-        Debug.Log(grid_pos);
     }
 
     private void OnDrawGizmosSelected()
