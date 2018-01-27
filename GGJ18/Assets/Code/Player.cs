@@ -80,7 +80,6 @@ public class Player : MonoBehaviour
                 break;
         }
         orders.RemoveAt(0);
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, new Vector3(looking_at.x, looking_at.y, 0.0f));
         
         if (direction != Vector2.zero && isValidGridPos(grid_pos + new Vector2(direction.x, direction.y)))
         {
