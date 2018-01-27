@@ -11,11 +11,9 @@ public enum ENEMY_ACTIONS
     PAUSE
 }
 
-
-public class BaseEnemy : MonoBehaviour {
-
+public class BaseEnemy : MonoBehaviour
+{
     public ENEMY_ACTIONS[] my_actions;
-    public float time_between_actions = 2f;
     public float mov_velocity = 5f;
     public float max_movement_time = 0.5f;
     Vector2 grid_pos;
@@ -28,7 +26,7 @@ public class BaseEnemy : MonoBehaviour {
         grid_pos = Grid.RealWorldToGridPos(transform.position);
         SetPosInGrid(grid_pos);
 
-        Invoke("DoAction", time_between_actions);
+        Invoke("DoAction", LevelManager.current_level.action_time);
     }
 	
     void DoAction()
@@ -71,12 +69,12 @@ public class BaseEnemy : MonoBehaviour {
 
         ExecuteAction(action_to_execute);
 
-        Invoke("DoAction", time_between_actions);
+        Invoke("DoAction", LevelManager.current_level.action_time);
     }
 
     void ExecuteAction(ENEMY_ACTIONS action)
     {
-        Debug.Log("EXECUTING ACTION:" + action.ToString());
+        //Debug.Log("EXECUTING ACTION:" + action.ToString());
         switch (action)
         {
             case ENEMY_ACTIONS.MOVE_DOWN:
@@ -124,7 +122,6 @@ public class BaseEnemy : MonoBehaviour {
         transform.position = pos;
     }
 
-
     public void SetGridPos()
     {
         if (isValidGridPos(grid_pos))
@@ -146,6 +143,9 @@ public class BaseEnemy : MonoBehaviour {
         {
             return false;
         }
+
+        if (Vector2.Distance(LevelManager.current_level.player.GetPosInGrid(), new_pos) < 0.1f)
+            return false;
 
         return true;
     }

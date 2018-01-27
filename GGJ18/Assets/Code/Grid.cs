@@ -45,7 +45,7 @@ public class Grid : MonoBehaviour {
 
     public static Vector2 roundVec2(Vector2 v)
     {
-        return new Vector2((int)(v.x),(int)(v.y));
+        return new Vector2(Mathf.RoundToInt(v.x), Mathf.RoundToInt(v.y));
     }
 
     public static bool insideBorder(Vector2 pos)

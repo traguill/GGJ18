@@ -20,6 +20,9 @@ public class Signal : MonoBehaviour
     //Save player input
     List<MoveDirection> orders_buffer = new List<MoveDirection>();
 
+    public int max_orders = 10;//Functionality not done, just for UI. 
+
+
 	void Update () 
     {
         //Save player input
@@ -50,4 +53,10 @@ public class Signal : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Backspace) && orders_buffer.Count > 0) orders_buffer.RemoveAt(orders_buffer.Count - 1);
         if (Input.GetKeyUp(KeyCode.Delete) && orders_buffer.Count != 0) orders_buffer.Clear();
     }
+
+    public List<MoveDirection> GetOrders()
+    {
+        return orders_buffer;
+    }
+
 }
