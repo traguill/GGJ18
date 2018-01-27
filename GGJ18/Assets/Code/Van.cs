@@ -19,12 +19,17 @@ public class Van : MonoBehaviour
     bool move = false;
     bool engine_stops_delay = false;
 
+    public bool van_enter = false;
+    public string next_scene_name;
+
+    void Start()
+    {
+        if(van_enter)
+            EnterVan();
+    }
+
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
-            EnterVan();
-        if (Input.GetKeyUp(KeyCode.G))
-            ExitVan();
         if(move)
         {
             transform.position += Vector3.right * Time.deltaTime * speed;
@@ -60,6 +65,8 @@ public class Van : MonoBehaviour
         yield return new WaitForSeconds(engine_time_delay);
         engine.SetBool("on", false);
         engine_stops_delay = false;
+        yield return new WaitForSeconds(2.0f);
+        FadeInOut.fade.FadeIn(next_scene_name);
         yield return 0;
     }
 }
