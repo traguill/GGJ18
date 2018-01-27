@@ -67,16 +67,16 @@ public class Player : MonoBehaviour
                 break;
             case Signal.MoveDirection.RIGHT:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, -90.0f) * looking_at;
-                direction = Vector2.zero;
                 anim.SetBool("turn_right", true);
+                direction = Quaternion.Euler(0.0f, 0.0f, -90.0f) * direction;
                 break;
-            case Signal.MoveDirection.DOWN:
-                direction *= -1;
+            case Signal.MoveDirection.WAIT:
+                direction = Vector2.zero;
                 break;
             case Signal.MoveDirection.LEFT:
                 looking_at = Quaternion.Euler(0.0f, 0.0f, 90.0f) * looking_at;
-                direction = Vector2.zero;
                 anim.SetBool("turn_left", true);
+                direction = Quaternion.Euler(0.0f, 0.0f, 90.0f) * direction;
                 break;
         }
         orders.RemoveAt(0);
