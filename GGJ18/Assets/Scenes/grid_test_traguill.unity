@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4403ca1dcbf36a247aa397c268006eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action_time: 0.8
+  action_time: 1
   player: {fileID: 0}
 --- !u!4 &455603412
 Transform:
