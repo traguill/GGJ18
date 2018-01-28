@@ -2491,7 +2491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   send_signal_every: 10
   player: {fileID: 1506262794}
-  max_orders: 10
+  max_orders: 8
   GO_IMAGE: {fileID: 1195375973}
 --- !u!4 &1027220681
 Transform:
@@ -2707,7 +2707,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4284,6 +4284,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114903857349435436, guid: 58f2a947b6fd2294093a060e4c1fe4f8,
+        type: 2}
+      propertyPath: my_actions.Array.size
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 4536716510880774, guid: 58f2a947b6fd2294093a060e4c1fe4f8, type: 2}
       propertyPath: m_LocalPosition.x
       value: 144
@@ -4319,6 +4324,31 @@ Prefab:
     - target: {fileID: 1796817828643276, guid: 58f2a947b6fd2294093a060e4c1fe4f8, type: 2}
       propertyPath: m_Name
       value: Enemy 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903857349435436, guid: 58f2a947b6fd2294093a060e4c1fe4f8,
+        type: 2}
+      propertyPath: my_actions.Array.data[4]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903857349435436, guid: 58f2a947b6fd2294093a060e4c1fe4f8,
+        type: 2}
+      propertyPath: my_actions.Array.data[5]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903857349435436, guid: 58f2a947b6fd2294093a060e4c1fe4f8,
+        type: 2}
+      propertyPath: my_actions.Array.data[6]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903857349435436, guid: 58f2a947b6fd2294093a060e4c1fe4f8,
+        type: 2}
+      propertyPath: my_actions.Array.data[7]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903857349435436, guid: 58f2a947b6fd2294093a060e4c1fe4f8,
+        type: 2}
+      propertyPath: my_actions.Array.data[8]
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 58f2a947b6fd2294093a060e4c1fe4f8, type: 2}

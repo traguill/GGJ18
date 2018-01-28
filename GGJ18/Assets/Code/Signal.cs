@@ -43,11 +43,9 @@ public class Signal : MonoBehaviour
                 {
                     timer = 0;
                     SendSignal();
-                }
-                timer = 0;
-                SendSignal();
-                GO_IMAGE.SetActive(true);
-                Invoke("DeactivateGo", 2f);
+                    GO_IMAGE.SetActive(true);
+                    Invoke("DeactivateGo", 2f);
+                }               
             }
         }       
 	}
