@@ -56,7 +56,7 @@ public class LevelManager : MonoBehaviour {
 
     public void ChangeSceneLossGame()
     {
-        fade.FadeIn("end_game");
+        fade.FadeIn("MainMenu");
     }
 
     public void WinGame()
@@ -82,7 +82,7 @@ public class LevelManager : MonoBehaviour {
         player.gameObject.SetActive(false);
         van.ExitVan();
         yield return new WaitForSeconds(3.0f);
-        fade.FadeIn("end_game");
+        fade.FadeIn("MainMenu");
         yield return 0;
     }
 
