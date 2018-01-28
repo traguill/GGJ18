@@ -67,11 +67,14 @@ public class ArrowInversedOrder : MonoBehaviour
             }
             else
             {
-                arrows[i].transform.localScale = Vector3.one;
-                arrows[i].SetBool("up", false);
-                arrows[i].SetBool("wait", false);
-                arrows[i].SetBool("left", false);
-                arrows[i].gameObject.SetActive(false);
+                if(arrows[i].gameObject.activeInHierarchy)
+                {
+                    arrows[i].transform.localScale = Vector3.one;
+                    arrows[i].SetBool("up", false);
+                    arrows[i].SetBool("wait", false);
+                    arrows[i].SetBool("left", false);
+                    arrows[i].gameObject.SetActive(false);
+                }
             }
         }
     }
