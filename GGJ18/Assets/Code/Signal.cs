@@ -45,7 +45,7 @@ public class Signal : MonoBehaviour
                     timer = 0;
                     SendSignal();
                     GO_IMAGE.SetActive(true);
-                    winston.GetComponent<PortraitBehavior>().Talk(3);
+                    winston.GetComponent<PortraitBehavior>().Talk(1);
                     Invoke("DeactivateGo", 2f);
                 }               
             }
