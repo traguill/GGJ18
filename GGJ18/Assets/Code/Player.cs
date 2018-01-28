@@ -21,6 +21,10 @@ public class Player : MonoBehaviour
 
     bool got_ruby = false;
     public AudioClip onPicksound;
+    public AudioClip disappear;
+
+    public AudioClip[] orders_sounds;
+
     AudioSource source;
     private void Start()
     {
@@ -76,6 +80,9 @@ public class Player : MonoBehaviour
     public void ReceiveOrders(List<Signal.MoveDirection> data)
     {
         orders.AddRange(data);
+        int i = Random.Range(0, orders_sounds.Length);
+        source.PlayOneShot(orders_sounds[i]);
+
     }
 
     public List<Signal.MoveDirection> GetOrders()
@@ -165,6 +172,7 @@ public class Player : MonoBehaviour
 
     public void PlayJump()
     {
+        source.PlayOneShot(disappear);
         anim.Play("jump");
     }
 

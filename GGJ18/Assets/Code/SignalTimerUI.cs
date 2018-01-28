@@ -11,17 +11,21 @@ public class SignalTimerUI : MonoBehaviour {
     Image image;
     bool ready = false;
     public GameObject start;
+    AudioSource source;
+    public AudioClip tranmission;
+    bool playsound;
     private void Start()
     {
         image = GetComponent<Image>();
         wifi_activations.SetActive(false);
         start.SetActive(false);
         image.enabled = true;
+        source = GetComponent<AudioSource>();
     }
 
     void Update ()
     {
-        ChangeActivations();
+       ChangeActivations();
        float time = signal.GetLapsedTime();
        int i = Mathf.RoundToInt(time);
        if (i > numeros.Length - 1)
@@ -45,12 +49,18 @@ public class SignalTimerUI : MonoBehaviour {
             wifi_activations.SetActive(true);
             start.SetActive(true);
             image.enabled = false;
+            if(!playsound)
+            {
+                playsound = true;
+                source.PlayOneShot(tranmission);
+            } 
         }
         else
         {
             wifi_activations.SetActive(false);
             start.SetActive(false);
             image.enabled = true;
+            playsound = false;
         }
     }
 }

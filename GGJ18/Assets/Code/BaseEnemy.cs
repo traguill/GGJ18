@@ -21,7 +21,8 @@ public class BaseEnemy : MonoBehaviour
     public Vector2 looking_at = Vector2.up;
     bool coming_back = false;
 
-
+    AudioSource source;
+    public AudioClip alert;
     SpriteRenderer s_ren;
     Animator anim;
 	void Start ()
@@ -32,7 +33,7 @@ public class BaseEnemy : MonoBehaviour
         Invoke("DoAction", LevelManager.current_level.action_time);
         s_ren = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-
+        source = GetComponent<AudioSource>();
         if (looking_at.x > 0)
             s_ren.flipX = true;
     }
@@ -201,6 +202,7 @@ public class BaseEnemy : MonoBehaviour
 
     public void PlayerDetected(Vector3 player_position)
     {
+        source.PlayOneShot(alert);
         LevelManager.current_level.LossGame();
         StopAllCoroutines();
         StartCoroutine(MoveToPos(player_position));

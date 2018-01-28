@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1152704204572876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 64, y: 16, z: 0}
+  m_LocalPosition: {x: 16, y: 16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -181,6 +181,12 @@ MonoBehaviour:
   max_movement_time: 0.5
   mov_speed: 12
   onPicksound: {fileID: 8300000, guid: 2b89444df9193e145b83e20a739eea17, type: 3}
+  disappear: {fileID: 8300000, guid: 679473f37b108dc44bd4197e49561ef9, type: 3}
+  orders_sounds:
+  - {fileID: 8300000, guid: c38361168381c3b40ab9ca60d23c9a96, type: 3}
+  - {fileID: 8300000, guid: a8f108fefac0d754999065b87d5ed59e, type: 3}
+  - {fileID: 8300000, guid: e01ee8983874efc45b347837958ee116, type: 3}
+  - {fileID: 8300000, guid: bab73341a29d1cb40a904364ef154dc7, type: 3}
 --- !u!212 &212973135591544098
 SpriteRenderer:
   m_ObjectHideFlags: 1
