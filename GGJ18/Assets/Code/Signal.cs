@@ -21,9 +21,12 @@ public class Signal : MonoBehaviour
     List<MoveDirection> orders_buffer = new List<MoveDirection>();
 
     public int max_orders = 10;//Functionality not done, just for UI. 
+    private void Start()
+    {
+        timer = send_signal_every;
+    }
 
-
-	void Update () 
+    void Update () 
     {
         //Save player input
         GetPlayerInput();    
@@ -31,8 +34,11 @@ public class Signal : MonoBehaviour
         timer += Time.deltaTime;
         if(timer >= send_signal_every)
         {
-            timer -= send_signal_every;
-            SendSignal();
+            if(Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Start"))
+            {
+                timer = 0;
+                SendSignal();
+            }
         }
 	}
 
