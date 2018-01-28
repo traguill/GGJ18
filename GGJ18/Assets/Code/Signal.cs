@@ -21,9 +21,12 @@ public class Signal : MonoBehaviour
     List<MoveDirection> orders_buffer = new List<MoveDirection>();
 
     public int max_orders = 10;//Functionality not done, just for UI. 
+
+    public GameObject GO_IMAGE;
     private void Start()
     {
-        timer = send_signal_every;
+        DeactivateGo();
+        //timer = send_signal_every;
     }
 
     void Update () 
@@ -41,9 +44,18 @@ public class Signal : MonoBehaviour
                     timer = 0;
                     SendSignal();
                 }
+                timer = 0;
+                SendSignal();
+                GO_IMAGE.SetActive(true);
+                Invoke("DeactivateGo", 2f);
             }
         }       
 	}
+
+    void DeactivateGo()
+    {
+        GO_IMAGE.SetActive(false);
+    }
 
     void SendSignal()
     {
@@ -53,7 +65,7 @@ public class Signal : MonoBehaviour
 
     private void GetPlayerInput()
     {
-        if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonDown("Fire1")) orders_buffer.Add(MoveDirection.UP);
+        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetButtonDown("Fire1")) orders_buffer.Add(MoveDirection.UP);
         if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetButtonDown("Fire5")) orders_buffer.Add(MoveDirection.RIGHT);
         if (Input.GetKeyUp(KeyCode.RightControl) ||Input.GetButtonDown("Fire2")) orders_buffer.Add(MoveDirection.WAIT);
         if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetButtonDown("Fire4")) orders_buffer.Add(MoveDirection.LEFT);
