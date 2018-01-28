@@ -765,7 +765,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -789,7 +789,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!1 &982798992
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,7 +857,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option 2
+  m_Text: option 2
 --- !u!222 &982798995
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1284,6 +1284,10 @@ MonoBehaviour:
   - Ok. Where are we headed?
   - Nice work! Mission acomplished successfully.
   - Sorry chief, next time I'll be better.
+  - They were 5 original founders.
+  - Jordi Nunes - Game Designer
+  - "Ausi\xE0s Dalmau & Guillem Travila - Programmers"
+  - "Mart\xED Pin\xF3s & Sergi P\xE9rez - Artists"
 --- !u!114 &1303145096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,7 +1320,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This is a very long question?
+  m_Text: question
 --- !u!222 &1303145097
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1465,7 +1469,7 @@ MonoBehaviour:
     id_question: 0
     max_options: 3
     option1: Time to work.
-    option2: Let me tell you the story of the old legends.
+    option2: Talk about the founders
     option3: Leave, day off.
   - name: Select Level
     id_question: 1
@@ -1485,6 +1489,30 @@ MonoBehaviour:
     option1: Rest, analize and improve. Try it again
     option2: Better return to the lair.
     option3: 
+  - name: Roles
+    id_question: 4
+    max_options: 3
+    option1: Talk about designers
+    option2: Talk about programmers
+    option3: Talk about artists
+  - name: Designer
+    id_question: 5
+    max_options: 3
+    option1: Talk about programmers
+    option2: Talk about artists
+    option3: Good enough.
+  - name: Programmer
+    id_question: 6
+    max_options: 3
+    option1: Talk about artists
+    option2: Talk about designers
+    option3: Good enough.
+  - name: Artists
+    id_question: 7
+    max_options: 3
+    option1: Talk about programmers
+    option2: Talk about designers
+    option3: Good enough.
 --- !u!82 &1880570498
 AudioSource:
   m_ObjectHideFlags: 0

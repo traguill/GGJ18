@@ -58,7 +58,67 @@ public class MainMenu : MonoBehaviour
             case 3: //lose
                 EndLvlOptions(id);
                 break;
+            case 4: //Roles
+                RolesOptions(id);
+                break;
+            case 5: //Designer
+                DesignerOptions(id);
+                break;
+            case 6: //Programmers
+                ProgrammersOptions(id);
+                break;
+            case 7: //Artists
+                ArtistsOptions(id);
+                break;
         }
+    }
+
+    void RolesOptions(int id)
+    {
+        if (id == 1)
+            state = 5;
+        if (id == 2)
+            state = 6;
+        if (id == 3)
+            state = 7;
+       
+        question.AskQuestion(state);
+    }
+
+    void DesignerOptions(int id)
+    {
+        if (id == 1)
+            state = 6;
+        if (id == 2)
+            state = 7;
+        if (id == 3)
+            state = 0;
+
+        question.AskQuestion(state);
+    }
+
+    void ProgrammersOptions(int id)
+    {
+        if (id == 1)
+            state = 7;
+        if (id == 2)
+            state = 5;
+        if (id == 3)
+            state = 0;
+
+        question.AskQuestion(state);
+    }
+
+    void ArtistsOptions(int id)
+    {
+        if (id == 1)
+            state = 6;
+        if (id == 2)
+            state = 5;
+        if (id == 3)
+            state = 0;
+
+        question.AskQuestion(state);
     }
 
     void MenuOptions(int id)
@@ -71,7 +131,8 @@ public class MainMenu : MonoBehaviour
 
         if(id == 2)
         {
-            Debug.Log("Credits");
+            state = 4;
+            question.AskQuestion(state);
         }
 
         if (id == 3)
