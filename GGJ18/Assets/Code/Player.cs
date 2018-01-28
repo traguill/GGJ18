@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     SpriteRenderer s_ren;
 
     GameObject ruby;
-    GameObject endposition;
 
     bool got_ruby = false;
 
@@ -30,7 +29,6 @@ public class Player : MonoBehaviour
         s_ren = GetComponent<SpriteRenderer>();
 
         ruby = GameObject.FindGameObjectWithTag("Item");
-        endposition = GameObject.FindGameObjectWithTag("Finish");
     }
 
     void CheckWinAndRuby()
@@ -41,13 +39,6 @@ public class Player : MonoBehaviour
             {
                 got_ruby = true;
                 ruby.SetActive(false);
-            }
-                
-        }
-        else
-        {
-            if (Vector3.Distance(endposition.transform.position, transform.position) < 1f)
-            {
                 LevelManager.current_level.WinGame();
             }
         }
@@ -55,6 +46,9 @@ public class Player : MonoBehaviour
 
     void Update () 
     {
+        if (LevelManager.current_level.won == true || LevelManager.current_level.lost == true)
+            return;
+
         timer += Time.deltaTime;
         if(timer >= tempo && moving == false)
         {

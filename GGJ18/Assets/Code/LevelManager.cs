@@ -7,6 +7,10 @@ public class LevelManager : MonoBehaviour {
     public static LevelManager current_level;
     public float action_time = 2f;
     public Player player;
+
+    public bool lost = false;
+    public bool won = false;
+
 	void Awake ()
     {
         if (current_level != null)
@@ -24,11 +28,13 @@ public class LevelManager : MonoBehaviour {
 
     public void LossGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        lost = true;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void WinGame()
     {
+        won = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

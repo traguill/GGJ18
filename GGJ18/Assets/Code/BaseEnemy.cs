@@ -39,6 +39,9 @@ public class BaseEnemy : MonoBehaviour
 	
     void DoAction()
     {
+        if (LevelManager.current_level.won == true || LevelManager.current_level.lost == true)
+            return;
+
         ENEMY_ACTIONS action_to_execute = ENEMY_ACTIONS.PAUSE;
         if(!coming_back)
         {
@@ -155,7 +158,7 @@ public class BaseEnemy : MonoBehaviour
         while (max_movement_time > current_move_time)
         {
             transform.position = Vector3.Lerp(transform.position, pos, mov_velocity * Time.deltaTime);
-            current_move_time += 0.02f;
+            current_move_time += Time.deltaTime;
             anim.SetFloat("speedy", Mathf.RoundToInt(pos.y - transform.position.y));
             anim.SetFloat("speedx", Mathf.Abs(pos.x - transform.position.x));
             s_ren.sortingOrder = -Mathf.RoundToInt(transform.position.y);
@@ -191,9 +194,27 @@ public class BaseEnemy : MonoBehaviour
                 if(hit.collider.CompareTag("Player"))
                 {
                     LevelManager.current_level.LossGame();
+                    StopAllCoroutines();
+                    StartCoroutine(MoveToPos(hit.collider.gameObject.transform.position));
                 }
             }
         }
+    }
+
+    IEnumerator MoveToPos(Vector3 pos)
+    {
+        anim.SetFloat("speedy", pos.y - transform.position.y);
+        anim.SetFloat("speedx", Mathf.Abs(pos.x - transform.position.x));
+        while (Vector3.Distance(pos,transform.position)> Grid.current_grid.real_units)
+        {
+            transform.position = Vector3.Lerp(transform.position, pos, mov_velocity/2 * Time.deltaTime);
+            anim.SetFloat("speedy", Mathf.RoundToInt(pos.y - transform.position.y));
+            anim.SetFloat("speedx", Mathf.Abs(pos.x - transform.position.x));
+            s_ren.sortingOrder = -Mathf.RoundToInt(transform.position.y);
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        anim.SetFloat("speedy", 0);
+        anim.SetFloat("speedx", 0);
     }
 
     public void SetGridPos()
