@@ -23,6 +23,7 @@ public class Signal : MonoBehaviour
     public int max_orders = 10;//Functionality not done, just for UI. 
 
     public GameObject GO_IMAGE;
+    public GameObject winston;
     private void Start()
     {
         DeactivateGo();
@@ -39,11 +40,12 @@ public class Signal : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= send_signal_every)
             {
-                if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Start"))
+                if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Start") ) && orders_buffer.Count > 0)
                 {
                     timer = 0;
                     SendSignal();
                     GO_IMAGE.SetActive(true);
+                    winston.GetComponent<PortraitBehavior>().Talk(3);
                     Invoke("DeactivateGo", 2f);
                 }               
             }
