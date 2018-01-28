@@ -20,7 +20,8 @@ public class Player : MonoBehaviour
     GameObject ruby;
 
     bool got_ruby = false;
-
+    public AudioClip onPicksound;
+    AudioSource source;
     private void Start()
     {
         tempo = LevelManager.current_level.action_time;
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
         s_ren = GetComponent<SpriteRenderer>();
 
         ruby = GameObject.FindGameObjectWithTag("Item");
+        source = GetComponent<AudioSource>();
     }
 
     void CheckWinAndRuby()
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour
             if(Vector3.Distance(ruby.transform.position,transform.position)< Grid.current_grid.real_units/2)
             {
                 got_ruby = true;
+                source.PlayOneShot(onPicksound);
                 ruby.SendMessage("OnPick");
                 LevelManager.current_level.WinGame();
             }

@@ -24,8 +24,14 @@ public class Van : MonoBehaviour
 
     public Transform player_spawn_position;
 
+    AudioSource source;
+    public AudioClip van_turn_on;
+    public AudioClip van_turn_off;
+
+
     void Start()
     {
+        source = GetComponent<AudioSource>();
         if(van_enter)
             EnterVan();
     }
@@ -47,6 +53,7 @@ public class Van : MonoBehaviour
 
     public void EnterVan()
     {
+        source.PlayOneShot(van_turn_on);
         destination = stop_point.position;
         move = true;
         wheels.speed = 1.0f;
@@ -56,7 +63,9 @@ public class Van : MonoBehaviour
 
     public void ExitVan()
     {
+        source.Stop();
         destination = exit_point.position;
+        source.PlayOneShot(van_turn_on);
         move = true;
         wheels.speed = 1.0f;
         engine.SetBool("on", true);
@@ -64,10 +73,11 @@ public class Van : MonoBehaviour
 
     IEnumerator TurnOffEngine()
     {
+        source.PlayOneShot(van_turn_off);
         yield return new WaitForSeconds(engine_time_delay);
         engine.SetBool("on", false);
         engine_stops_delay = false;
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(4.0f);
         FadeInOut.fade.FadeIn(next_scene_name);
         yield return 0;
     }

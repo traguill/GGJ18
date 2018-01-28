@@ -14,6 +14,10 @@ public class LevelManager : MonoBehaviour {
     public bool won = false;
     public int scene_index = -1;
 
+    public AudioSource source;
+    public AudioClip win_clip;
+    public AudioClip lose_clip;
+
 	void Awake ()
     {
         if (current_level != null)
@@ -50,6 +54,7 @@ public class LevelManager : MonoBehaviour {
 
     public void LossGame()
     {
+        source.PlayOneShot(lose_clip);
         lost = true;
         scene_index = SceneManager.GetActiveScene().buildIndex;
     }
@@ -61,6 +66,7 @@ public class LevelManager : MonoBehaviour {
 
     public void WinGame()
     {
+        source.PlayOneShot(win_clip);
         won = true;
         scene_index = SceneManager.GetActiveScene().buildIndex;
         StartCoroutine("WinFinalAnim");
