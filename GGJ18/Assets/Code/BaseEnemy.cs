@@ -193,12 +193,17 @@ public class BaseEnemy : MonoBehaviour
             {
                 if(hit.collider.CompareTag("Player"))
                 {
-                    LevelManager.current_level.LossGame();
-                    StopAllCoroutines();
-                    StartCoroutine(MoveToPos(hit.collider.gameObject.transform.position));
+                    PlayerDetected(hit.collider.gameObject.transform.position);
                 }
             }
         }
+    }
+
+    public void PlayerDetected(Vector3 player_position)
+    {
+        LevelManager.current_level.LossGame();
+        StopAllCoroutines();
+        StartCoroutine(MoveToPos(player_position));
     }
 
     IEnumerator MoveToPos(Vector3 pos)
@@ -228,6 +233,11 @@ public class BaseEnemy : MonoBehaviour
             Vector2 v = Grid.roundVec2(grid_pos);
             Grid.AddTransformToGrid(v, transform);
         }
+    }
+
+    public Vector2 GetGridPos() 
+    {
+        return grid_pos;
     }
 
     bool isValidGridPos(Vector2 new_pos)
