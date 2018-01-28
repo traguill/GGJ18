@@ -203,11 +203,12 @@ public class BaseEnemy : MonoBehaviour
 
     IEnumerator MoveToPos(Vector3 pos)
     {
+        yield return new WaitForSeconds(2.0f);
         anim.SetFloat("speedy", pos.y - transform.position.y);
         anim.SetFloat("speedx", Mathf.Abs(pos.x - transform.position.x));
         while (Vector3.Distance(pos,transform.position)> Grid.current_grid.real_units)
         {
-            transform.position = Vector3.Lerp(transform.position, pos, mov_velocity/2 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, pos, 2.0f * Time.deltaTime);
             anim.SetFloat("speedy", Mathf.RoundToInt(pos.y - transform.position.y));
             anim.SetFloat("speedx", Mathf.Abs(pos.x - transform.position.x));
             s_ren.sortingOrder = -Mathf.RoundToInt(transform.position.y);
@@ -215,6 +216,9 @@ public class BaseEnemy : MonoBehaviour
         }
         anim.SetFloat("speedy", 0);
         anim.SetFloat("speedx", 0);
+        yield return new WaitForSeconds(1.5f);
+        LevelManager.current_level.ChangeSceneLossGame();
+        yield return 0;
     }
 
     public void SetGridPos()

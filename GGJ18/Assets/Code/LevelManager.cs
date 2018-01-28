@@ -52,7 +52,11 @@ public class LevelManager : MonoBehaviour {
     {
         lost = true;
         scene_index = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene("end_game");
+    }
+
+    public void ChangeSceneLossGame()
+    {
+        fade.FadeIn("end_game");
     }
 
     public void WinGame()
