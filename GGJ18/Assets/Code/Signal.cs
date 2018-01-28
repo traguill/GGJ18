@@ -60,7 +60,7 @@ public class Signal : MonoBehaviour
 
     private void GetPlayerInput()
     {
-        if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonDown("Fire1")) orders_buffer.Add(MoveDirection.UP);
+        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetButtonDown("Fire1")) orders_buffer.Add(MoveDirection.UP);
         if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetButtonDown("Fire5")) orders_buffer.Add(MoveDirection.RIGHT);
         if (Input.GetKeyUp(KeyCode.RightControl) ||Input.GetButtonDown("Fire2")) orders_buffer.Add(MoveDirection.WAIT);
         if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetButtonDown("Fire4")) orders_buffer.Add(MoveDirection.LEFT);
