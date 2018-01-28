@@ -1458,7 +1458,7 @@ MonoBehaviour:
   option2: {fileID: 982798994}
   option3: {fileID: 265982471}
   arrow: {fileID: 1232513168}
-  cursor: {fileID: 8300000, guid: e9916d4f66a5efd469fe2a662ac81a7d, type: 3}
+  cursor: {fileID: 8300000, guid: 50930a227a656f241b9df048d9ef50f6, type: 3}
   audio_source: {fileID: 1880570498}
   sets:
   - name: Menu
@@ -1540,7 +1540,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1564,7 +1564,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!1 &2032657908
 GameObject:
   m_ObjectHideFlags: 0
