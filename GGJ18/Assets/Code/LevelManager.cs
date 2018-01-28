@@ -10,31 +10,56 @@ public class LevelManager : MonoBehaviour {
 
     public bool lost = false;
     public bool won = false;
+    public int scene_index = -1;
 
 	void Awake ()
     {
         if (current_level != null)
-            Destroy(current_level);
-
+        {
+            Destroy(gameObject);
+            return;
+         }
         current_level = this;
+        DontDestroyOnLoad(gameObject);
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
-    void Update ()
+    void OnEnable()
     {
-		
-	}
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        GameObject tmp = GameObject.FindGameObjectWithTag("Player");
+
+        if (tmp)
+        {
+            player = tmp.GetComponent<Player>();
+            lost = false;
+            won = false;
+        }
+    }
 
     public void LossGame()
     {
         lost = true;
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        scene_index = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene("end_game");
     }
 
     public void WinGame()
     {
         won = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        scene_index = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene("end_game");
     }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    
 }
