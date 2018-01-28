@@ -32,6 +32,7 @@ public class LevelManager : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         van = GameObject.FindGameObjectWithTag("Van").GetComponent<Van>();
         fade = GameObject.FindGameObjectWithTag("Fade").GetComponent<FadeInOut>();
+        source = GetComponent<AudioSource>();
     }
 
     void OnEnable()
