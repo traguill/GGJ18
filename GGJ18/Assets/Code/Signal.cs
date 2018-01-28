@@ -21,9 +21,12 @@ public class Signal : MonoBehaviour
     List<MoveDirection> orders_buffer = new List<MoveDirection>();
 
     public int max_orders = 10;//Functionality not done, just for UI. 
+
+    public GameObject GO_IMAGE;
     private void Start()
     {
-        timer = send_signal_every;
+        DeactivateGo();
+        //timer = send_signal_every;
     }
 
     void Update () 
@@ -38,9 +41,16 @@ public class Signal : MonoBehaviour
             {
                 timer = 0;
                 SendSignal();
+                GO_IMAGE.SetActive(true);
+                Invoke("DeactivateGo", 2f);
             }
         }
 	}
+
+    void DeactivateGo()
+    {
+        GO_IMAGE.SetActive(false);
+    }
 
     void SendSignal()
     {
