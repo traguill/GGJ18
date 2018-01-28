@@ -140,7 +140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11, y: -234.8}
+  m_AnchoredPosition: {x: -11, y: -234.79999}
   m_SizeDelta: {x: 1023.9, y: 62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &111461022
@@ -214,7 +214,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.971, y: -358.8}
+  m_AnchoredPosition: {x: -10.971001, y: -358.8}
   m_SizeDelta: {x: 1023.8, y: 62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &265982471
@@ -327,7 +327,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -351,7 +351,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!4 &317403845
 Transform:
   m_ObjectHideFlags: 0
@@ -628,8 +628,8 @@ Canvas:
   m_GameObject: {fileID: 549982476}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1293592867}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -822,7 +822,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.971, y: -296.8}
+  m_AnchoredPosition: {x: -10.971001, y: -296.8}
   m_SizeDelta: {x: 1023.8, y: 62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &982798994
@@ -1203,7 +1203,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 350
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1212,8 +1212,8 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -1265,7 +1265,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -26.9, y: -179.3}
+  m_AnchoredPosition: {x: -26.900002, y: -179.29999}
   m_SizeDelta: {x: 1078.9, y: 95.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1303145095

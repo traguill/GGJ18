@@ -23,3 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalScenes/end_game.unity
     guid: fd4dc2ba5485236458304d14397c6bac
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/Credits.unity
+    guid: ad79e3b38a1bf8c498c186361230d1c4

@@ -1085,7 +1085,7 @@ MonoBehaviour:
   won: 0
   scene_index: -1
   source: {fileID: 455603413}
-  music_source: {fileID: 0}
+  music_source: {fileID: 455603413}
   win_clip: {fileID: 8300000, guid: f99be3ab6e12a2e48908c3a5e34e6e04, type: 3}
   lose_clip: {fileID: 8300000, guid: b0fdec2fe61ed9640b6a481b3fa8f737, type: 3}
 --- !u!4 &455603412
