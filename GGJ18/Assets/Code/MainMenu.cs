@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
     int state;
     public OptionsMenu options;
     public QuestionMenu question;
+    public AudioSource audio_source;
+    public AudioClip select_level;
 
     public static MainMenu menu;
 
@@ -80,12 +82,14 @@ public class MainMenu : MonoBehaviour
     {
         if (id == 1) //play lvl 1
         {
-            SceneManager.LoadScene("IntroScene1");
+            audio_source.PlayOneShot(select_level);
+            StartCoroutine(ChangeScene("IntroScene1"));
         }
 
         if (id == 2) //play lvl 2
         {
-            SceneManager.LoadScene("IntroScene2");
+            audio_source.PlayOneShot(select_level);
+            StartCoroutine(ChangeScene("IntroScene2"));
         }
 
         if (id == 3) //return to menu
@@ -111,5 +115,11 @@ public class MainMenu : MonoBehaviour
             state = 0;
             question.AskQuestion(state);
         }
+    }
+
+    IEnumerator ChangeScene(string scene)
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene(scene);
     }
 }
