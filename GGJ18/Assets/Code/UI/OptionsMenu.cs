@@ -21,6 +21,9 @@ public class OptionsMenu : MonoBehaviour {
     public Text option3;
     public Image arrow;
 
+    public AudioClip cursor;
+    public AudioSource audio_source;
+
     public QuestionOptions[] sets;
 
     int max_options = 3;
@@ -56,15 +59,18 @@ public class OptionsMenu : MonoBehaviour {
             if(Input.GetKeyUp(KeyCode.DownArrow))
             {
                 SetOptionDown();
+                audio_source.PlayOneShot(cursor);
             }
             if(Input.GetKeyUp(KeyCode.UpArrow))
             {
                 SetOptionUp();
+                audio_source.PlayOneShot(cursor);
             }
 
             if(Input.GetKeyUp(KeyCode.Return))
             {
                 MainMenu.menu.OptionSelected(selected_option);
+                audio_source.PlayOneShot(cursor);
                 Reset();
             }
         }
