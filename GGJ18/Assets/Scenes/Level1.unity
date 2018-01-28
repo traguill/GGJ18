@@ -2389,6 +2389,11 @@ Prefab:
       propertyPath: m_TagString
       value: Enemies
       objectReference: {fileID: 0}
+    - target: {fileID: 114903857349435436, guid: 58f2a947b6fd2294093a060e4c1fe4f8,
+        type: 2}
+      propertyPath: looking_at.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 58f2a947b6fd2294093a060e4c1fe4f8, type: 2}
   m_IsPrefabParent: 0
@@ -4695,6 +4700,16 @@ Prefab:
         type: 2}
       propertyPath: my_actions.Array.data[9]
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903857349435436, guid: 58f2a947b6fd2294093a060e4c1fe4f8,
+        type: 2}
+      propertyPath: looking_at.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903857349435436, guid: 58f2a947b6fd2294093a060e4c1fe4f8,
+        type: 2}
+      propertyPath: looking_at.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 58f2a947b6fd2294093a060e4c1fe4f8, type: 2}
