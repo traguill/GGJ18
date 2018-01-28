@@ -9,22 +9,23 @@ public class ArrowInversedOrder : MonoBehaviour
     public Sprite UpArrow;
     public Sprite DownArrow;
     public Sprite LeftArrow;
-    public Sprite RightArrow;
+    public Sprite WaitArrow;
 
     public GameObject arrow_img;
 
-    List<Animator> arrows;
+    List<Image> arrows;
 
     public Signal signal;
     public Player player;
 
     void Start()
     {
-        arrows = new List<Animator>();
+        arrows = new List<Image>();
         for (int i = 0; i < signal.max_orders; i++)
         {
             GameObject go = Instantiate(arrow_img, transform);
-            arrows.Add(go.GetComponent<Animator>());
+            arrows.Add(go.transform.GetChild(0).GetComponent<Image>());
+            go.SetActive(false);
         }
     }
 
@@ -42,38 +43,31 @@ public class ArrowInversedOrder : MonoBehaviour
         {
             if (current_movements.Count > j - i)
             {
-                arrows[i].gameObject.SetActive(true);
+                arrows[i].transform.parent.gameObject.SetActive(true);
                 switch (current_movements[j - i])
                 {
                     case Signal.MoveDirection.UP:
-                        DeactivateOthers(arrows[i]);
-                        arrows[i].SetBool("up", true);
+                        arrows[i].sprite = UpArrow;
                         break;
                     case Signal.MoveDirection.RIGHT:
-                        DeactivateOthers(arrows[i]);
-                        arrows[i].SetBool("left", true);
+                        arrows[i].sprite = LeftArrow;
                         arrows[i].transform.localScale = new Vector3(-1, 1, 1);
                         break;
                     case Signal.MoveDirection.WAIT:
-                        DeactivateOthers(arrows[i]);
-                        arrows[i].SetBool("wait", true);
+                        arrows[i].sprite = WaitArrow;
                         break;
                     case Signal.MoveDirection.LEFT:
-                        DeactivateOthers(arrows[i]);
-                        arrows[i].SetBool("left", true);
+                        arrows[i].sprite = LeftArrow;
                         break;
                 }
-
             }
             else
             {
                 if(arrows[i].gameObject.activeInHierarchy)
                 {
                     arrows[i].transform.localScale = Vector3.one;
-                    arrows[i].SetBool("up", false);
-                    arrows[i].SetBool("wait", false);
-                    arrows[i].SetBool("left", false);
-                    arrows[i].gameObject.SetActive(false);
+
+                    arrows[i].transform.parent.gameObject.SetActive(false);
                 }
             }
         }

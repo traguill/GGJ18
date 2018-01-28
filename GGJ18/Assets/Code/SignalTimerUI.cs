@@ -24,7 +24,6 @@ public class SignalTimerUI : MonoBehaviour {
         ChangeActivations();
        float time = signal.GetLapsedTime();
        int i = Mathf.RoundToInt(time);
-        Debug.Log(i);
        if (i > numeros.Length - 1)
            i = numeros.Length - 1;
 

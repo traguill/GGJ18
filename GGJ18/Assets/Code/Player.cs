@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
             if(Vector3.Distance(ruby.transform.position,transform.position)< Grid.current_grid.real_units/2)
             {
                 got_ruby = true;
-                ruby.SetActive(false);
+                ruby.SendMessage("OnPick");
                 LevelManager.current_level.WinGame();
             }
         }
