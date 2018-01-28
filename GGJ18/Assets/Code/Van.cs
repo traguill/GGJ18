@@ -22,6 +22,8 @@ public class Van : MonoBehaviour
     public bool van_enter = false;
     public string next_scene_name;
 
+    public Transform player_spawn_position;
+
     void Start()
     {
         if(van_enter)

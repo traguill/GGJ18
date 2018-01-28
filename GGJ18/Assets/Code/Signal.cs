@@ -28,18 +28,21 @@ public class Signal : MonoBehaviour
 
     void Update () 
     {
-        //Save player input
-        GetPlayerInput();    
-
-        timer += Time.deltaTime;
-        if(timer >= send_signal_every)
+        if(LevelManager.current_level.won == false && LevelManager.current_level.lost == false)
         {
-            if(Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Start"))
+            //Save player input
+            GetPlayerInput();
+
+            timer += Time.deltaTime;
+            if (timer >= send_signal_every)
             {
-                timer = 0;
-                SendSignal();
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Start"))
+                {
+                    timer = 0;
+                    SendSignal();
+                }
             }
-        }
+        }       
 	}
 
     void SendSignal()

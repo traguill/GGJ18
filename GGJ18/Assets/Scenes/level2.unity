@@ -917,6 +917,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   action_time: 1
   player: {fileID: 0}
+  van: {fileID: 0}
+  lost: 0
+  won: 0
+  scene_index: -1
 --- !u!4 &455603412
 Transform:
   m_ObjectHideFlags: 0
@@ -1848,6 +1852,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 114062136845006878, guid: 558c1e0d2c797c441b4ed4e5da14e50b,
+        type: 2}
+      propertyPath: exit_point
+      value: 
+      objectReference: {fileID: 1431842006}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 558c1e0d2c797c441b4ed4e5da14e50b, type: 2}
   m_IsPrefabParent: 0
@@ -2484,6 +2493,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1431842005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1431842006}
+  m_Layer: 0
+  m_Name: VanExitPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -1577725955494882426, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1431842006
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1431842005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 542, y: -66, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1457815145
 GameObject:
   m_ObjectHideFlags: 0
@@ -3068,7 +3105,7 @@ GameObject:
   - component: {fileID: 2014472374}
   m_Layer: 5
   m_Name: Fade
-  m_TagString: Untagged
+  m_TagString: Fade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

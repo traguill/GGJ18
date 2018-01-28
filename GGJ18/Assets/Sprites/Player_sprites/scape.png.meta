@@ -1,15 +1,23 @@
 fileFormatVersion: 2
-guid: 7d962c432daceeb41978780d54ea1bfd
-timeCreated: 1517085506
+guid: cfd8d68e1089e864e95ce36718c39a73
+timeCreated: 1517121303
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: walk_down_0
-    21300002: walk_down_1
-    21300004: walk_down_2
-    21300006: walk_down_3
-    21300008: walk_down_4
-    21300010: walk_down_5
+    21300000: scape_0
+    21300002: scape_1
+    21300004: scape_2
+    21300006: scape_3
+    21300008: scape_4
+    21300010: scape_5
+    21300012: scape_6
+    21300014: scape_7
+    21300016: scape_8
+    21300018: scape_9
+    21300020: scape_10
+    21300022: scape_11
+    21300024: scape_12
+    21300026: scape_13
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -97,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walk_down_0
+      name: scape_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 28
-        width: 16
-        height: 28
+        y: 141
+        width: 39
+        height: 47
       alignment: 9
       pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,13 +119,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: walk_down_1
+      name: scape_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 28
-        width: 16
-        height: 28
+        x: 39
+        y: 141
+        width: 39
+        height: 47
       alignment: 9
       pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,13 +133,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: walk_down_2
+      name: scape_2
       rect:
         serializedVersion: 2
-        x: 32
-        y: 28
-        width: 16
-        height: 28
+        x: 78
+        y: 141
+        width: 39
+        height: 47
       alignment: 9
       pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,13 +147,139 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: walk_down_3
+      name: scape_3
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 141
+        width: 39
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: scape_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 94
+        width: 39
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: scape_5
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 94
+        width: 39
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: scape_6
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 94
+        width: 39
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: scape_7
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 94
+        width: 39
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: scape_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 47
+        width: 39
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: scape_9
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 47
+        width: 39
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: scape_10
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 47
+        width: 39
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: scape_11
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 47
+        width: 39
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: scape_12
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 28
+        width: 39
+        height: 47
       alignment: 9
       pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,27 +287,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: walk_down_4
+      name: scape_13
       rect:
         serializedVersion: 2
-        x: 16
+        x: 39
         y: 0
-        width: 16
-        height: 28
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: walk_down_5
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 28
+        width: 39
+        height: 47
       alignment: 9
       pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -150,4 +150,14 @@ public class Player : MonoBehaviour
 
         return true;
     }
+
+    public void PlayJump()
+    {
+        anim.Play("jump");
+    }
+
+    public void PlayFall()
+    {
+        anim.Play("fall");
+    }
 }
