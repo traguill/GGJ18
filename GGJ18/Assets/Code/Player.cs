@@ -145,6 +145,15 @@ public class Player : MonoBehaviour
 
         if (!Grid.PositionFree(v))
         {
+            GameObject[] enemies;
+            enemies = GameObject.FindGameObjectsWithTag("Enemies");
+            for(int i = 0; i < enemies.Length; i++)
+            {
+                if(v == enemies[i].GetComponent<BaseEnemy>().GetGridPos())
+                {
+                    enemies[i].GetComponent<BaseEnemy>().PlayerDetected(transform.position);
+                }
+            }
             return false;
         }
 
