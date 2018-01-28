@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour {
     public int scene_index = -1;
 
     public AudioSource source;
+    public AudioSource music_source;
     public AudioClip win_clip;
     public AudioClip lose_clip;
 
@@ -54,6 +55,7 @@ public class LevelManager : MonoBehaviour {
 
     public void LossGame()
     {
+        music_source.volume = 0.2f;
         source.PlayOneShot(lose_clip);
         lost = true;
         scene_index = SceneManager.GetActiveScene().buildIndex;
@@ -66,6 +68,7 @@ public class LevelManager : MonoBehaviour {
 
     public void WinGame()
     {
+        music_source.volume = 0.2f;
         source.PlayOneShot(win_clip);
         won = true;
         scene_index = SceneManager.GetActiveScene().buildIndex;

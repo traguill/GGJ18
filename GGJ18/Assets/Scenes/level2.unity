@@ -1085,6 +1085,7 @@ MonoBehaviour:
   won: 0
   scene_index: -1
   source: {fileID: 455603413}
+  music_source: {fileID: 0}
   win_clip: {fileID: 8300000, guid: f99be3ab6e12a2e48908c3a5e34e6e04, type: 3}
   lose_clip: {fileID: 8300000, guid: b0fdec2fe61ed9640b6a481b3fa8f737, type: 3}
 --- !u!4 &455603412
@@ -2526,6 +2527,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114924307084470336, guid: f6b7d46066339f14e9bdcb35a004c9f4,
+        type: 2}
+      propertyPath: orders_sounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 72bf28ebdecc8864f8eed849bbf04492, type: 3}
+    - target: {fileID: 114924307084470336, guid: f6b7d46066339f14e9bdcb35a004c9f4,
+        type: 2}
+      propertyPath: orders_sounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9243df2c719ddad499766e97cc822239, type: 3}
+    - target: {fileID: 114924307084470336, guid: f6b7d46066339f14e9bdcb35a004c9f4,
+        type: 2}
+      propertyPath: orders_sounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0103984ba6e44e042b569f9c610b1078, type: 3}
+    - target: {fileID: 114924307084470336, guid: f6b7d46066339f14e9bdcb35a004c9f4,
+        type: 2}
+      propertyPath: orders_sounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6b8dec65fbfba6842b5c4a156130532f, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f6b7d46066339f14e9bdcb35a004c9f4, type: 2}
   m_IsPrefabParent: 0
@@ -3619,7 +3640,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0d5266382476d994ea10cb56a34e060e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 1
   Mute: 0
